@@ -4,6 +4,11 @@
 
 Exacute `xfce4-panel -r`.
 
+## Themes and Icons
+
+[PRO-Dark-XFCE-Edition](https://www.xfce-look.org/p/1207818)
+[Tela circle icon theme](https://www.xfce-look.org/p/1359276)
+
 ## `gtk.css`
 
 Create or edit ` ~/.config/gtk-3.0/gtk.css` and insert or add the following:
