@@ -1,5 +1,9 @@
 # Theming XFCE
 
+## To see the changes
+
+Exacute `xfce4-panel -r`.
+
 ## `gtk.css`
 
 Create or edit ` ~/.config/gtk-3.0/gtk.css` and insert or add the following:
