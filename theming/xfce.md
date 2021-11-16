@@ -60,5 +60,4 @@ VteTerminal, TerminalScreen, vte-terminal {
 .tasklist image { 
     margin: 0 1px 0 7px;
 }
-
 ```
