@@ -6,8 +6,8 @@ Exacute `xfce4-panel -r`.
 
 ## Themes and Icons
 
-[PRO-Dark-XFCE-Edition](https://www.xfce-look.org/p/1207818)
-[Tela circle icon theme](https://www.xfce-look.org/p/1359276)
+* [PRO-Dark-XFCE-Edition](https://www.xfce-look.org/p/1207818)
+* [Tela circle icon theme](https://www.xfce-look.org/p/1359276)
 
 ## `gtk.css`
 
