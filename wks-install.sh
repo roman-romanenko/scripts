@@ -39,7 +39,7 @@ mkdir .themes
 tar -xf PRO-dark-XFCE-4.14.tar.xz -C ~/.themes
 mkdir -p ~/.config/gtk-3.0
 wget -P ~/.config/gtk-3.0/ https://raw.githubusercontent.com/roman-romanenko/setup/main/theming/gtk.css
-wget -P ~/.config/gtk-3.0/gtk.css https://raw.githubusercontent.com/roman-romanenko/setup/main/theming/pro-gtk.css 
+wget -P ~/.config/gtk-3.0/gtk.css -O gtk.css https://raw.githubusercontent.com/roman-romanenko/setup/main/theming/pro-gtk.css 
 
 echo ""
 echo "============================================="
