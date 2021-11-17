@@ -2,7 +2,8 @@ echo "Disable Cloud Init"
 sudo touch /etc/cloud/cloud-init.disabled
 
 echo "Create No Password Sudo"
-echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
+#echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
+sudo sh -c 'echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 
 echo "Install Needed Software"
 sudo apt update
@@ -10,7 +11,8 @@ sudo apt upgrade -y
 sudo apt install -y xrdp xubuntu-core copyq flameshot software-properties-common apt-transport-https wget engrampa firefox
 
 echo "Confitue XRDP Session"
-echo xfce4-session > ~/.xsession
+#echo xfce4-session > ~/.xsession
+sudo sh -c 'echo "xfce4-sessionL" > ~/.xsession'
 
 echo "Install VSCode"
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
