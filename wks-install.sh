@@ -2,8 +2,7 @@ echo "Disable Cloud Init"
 sudo touch /etc/cloud/cloud-init.disabled
 
 echo "Create No Password Sudo"
-#echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
-sudo sh -c 'echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
+echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 
 echo "Install Needed Software"
 sudo apt update
@@ -11,8 +10,7 @@ sudo apt upgrade -y
 sudo apt install -y xrdp xubuntu-core copyq flameshot software-properties-common apt-transport-https wget engrampa firefox
 
 echo "Confitue XRDP Session"
-#echo xfce4-session > ~/.xsession
-sudo sh -c 'echo "xfce4-sessionL" > ~/.xsession'
+echo xfce4-session > ~/.xsession
 
 echo "Install VSCode"
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -42,4 +40,7 @@ tar -xf PRO-dark-XFCE-4.14.tar.xz -C ~/.themes
 mkdir -p ~/.config/gtk-3.0
 wget -P ~./config/gtk-3.0/ https://raw.githubusercontent.com/roman-romanenko/setup/main/theming/gtk.css 
 
+echo ""
+echo "============================================="
 echo "Done"
+echo "============================================="
