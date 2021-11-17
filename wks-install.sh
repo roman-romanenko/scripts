@@ -42,5 +42,5 @@ wget -P ~./config/gtk-3.0/ https://raw.githubusercontent.com/roman-romanenko/set
 
 echo ""
 echo "============================================="
-echo "Done"
+echo "                    Done"
 echo "============================================="
