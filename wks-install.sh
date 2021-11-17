@@ -7,7 +7,7 @@ echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 echo "Install Needed Software"
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y xrdp xubuntu-core copyq flameshot software-properties-common apt-transport-https wget engrampa unzip
+sudo apt install -y xrdp xubuntu-core copyq flameshot software-properties-common apt-transport-https wget engrampa firefox
 
 echo "Confitue XRDP Session"
 echo xfce4-session > ~/.xsession
