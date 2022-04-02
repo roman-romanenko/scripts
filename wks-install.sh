@@ -32,14 +32,14 @@ docker-compose --version
 
 echo "Deal with Theaming"
 
-wget https://github.com/roman-romanenko/setup/raw/main/theming/Tela-circle.tar.xz
+wget https://github.com/xa2099/setup/raw/main/theming/Tela-circle.tar.xz
 mkdir .icons
 tar -xf Tela-circle.tar.xz -C ~/.icons
-wget https://github.com/roman-romanenko/setup/raw/main/theming/PRO-dark-XFCE-4.14.tar.xz
+wget https://github.com/xa2099/setup/raw/main/theming/PRO-dark-XFCE-4.14.tar.xz
 mkdir .themes
 tar -xf PRO-dark-XFCE-4.14.tar.xz -C ~/.themes
 mkdir -p ~/.config/gtk-3.0
-wget -P ~/.config/gtk-3.0/ https://raw.githubusercontent.com/roman-romanenko/setup/main/theming/gtk.css
-wget -O ~/.themes/PRO-dark-XFCE-4.14/gtk-3.0/gtk.css https://raw.githubusercontent.com/roman-romanenko/setup/main/theming/pro-gtk.css
+wget -P ~/.config/gtk-3.0/ https://raw.githubusercontent.com/xa2099/setup/main/theming/gtk.css
+wget -O ~/.themes/PRO-dark-XFCE-4.14/gtk-3.0/gtk.css https://raw.githubusercontent.com/xa2099/setup/main/theming/pro-gtk.css
 
 echo "Done..."
