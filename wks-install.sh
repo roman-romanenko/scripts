@@ -7,7 +7,7 @@ echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 echo "Install Needed Software"
 sudo apt update
 sudo apt upgrade -y
-sudo apt install xrdp xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg firefox -y
+sudo apt install xrdp xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg -y
 
 echo "Confitue XRDP Session"
 echo xfce4-session > ~/.xsession
