@@ -48,7 +48,7 @@ sudo apt update
 sudo apt install google-chrome-stable
 
 echo "Install Tabby"
-curl -s https://packagecloud.io/install/repositories/eugeny/tabby/script.deb.sh | sudo bash
+curl -s https://raw.githubusercontent.com/xa2099/setup/main/config/tabby.sh | sudo bash
 
 echo "Install VPN"
 wget -O ~/Downloads/anyconnect-linux64-4.10.01075-k9.tar.gz https://vpn.nic.in/resources/software/anyconnect-linux64-4.10.01075-k9.tar.gz
