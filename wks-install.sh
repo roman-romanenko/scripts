@@ -7,31 +7,13 @@ echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 echo "Install Needed Software"
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y xrdp xubuntu-core copyq flameshot software-properties-common apt-transport-https wget engrampa firefox
+sudo apt install xrdp xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg firefox -y
 
 echo "Confitue XRDP Session"
 echo xfce4-session > ~/.xsession
-
-echo "Install VSCode"
-wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-sudo apt install -y code
-
-echo "Install Docker and Docker-compose"
-sudo apt-get install -y curl apt-transport-https ca-certificates software-properties-common 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" 
-sudo apt update 
-sudo apt install -y docker-ce
-sudo usermod -aG docker $USER 
-sudo chmod 666 /var/run/docker.sock
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose 
-sudo chmod +x /usr/local/bin/docker-compose
-docker --version
-docker-compose --version
+wget -O /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla https://raw.githubusercontent.com/xa2099/setup/main/config/45-allow-colord.pkla
 
 echo "Deal with Theaming"
-
 wget https://github.com/xa2099/setup/raw/main/theming/Tela-circle.tar.xz
 mkdir .icons
 tar -xf Tela-circle.tar.xz -C ~/.icons
@@ -41,5 +23,29 @@ tar -xf PRO-dark-XFCE-4.14.tar.xz -C ~/.themes
 mkdir -p ~/.config/gtk-3.0
 wget -P ~/.config/gtk-3.0/ https://raw.githubusercontent.com/xa2099/setup/main/theming/gtk.css
 wget -O ~/.themes/PRO-dark-XFCE-4.14/gtk-3.0/gtk.css https://raw.githubusercontent.com/xa2099/setup/main/theming/pro-gtk.css
+
+echo "Install Docker"
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$UBUNTU_CODENAME")" stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+docker --version
+
+echo "Install VSCode"
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt-get update 
+sudo apt install code -y
+
+echo "Install Tabby"
+curl -s https://packagecloud.io/install/repositories/eugeny/tabby/script.deb.sh | sudo bash
+
+echo "Install VPN"
+wget -O ~/Downloads/anyconnect-linux64-4.10.01075-k9.tar.gz https://vpn.nic.in/resources/software/anyconnect-linux64-4.10.01075-k9.tar.gz
+tar -xf ~/Downloads/anyconnect-linux64-4.10.01075-k9.tar.gz -C ~/Downloads
+bash ~/Downloads/~/Downloads/anyconnect-linux64-4.10.01075-k9/vpn/vpn_install.sh
 
 echo "Done..."
