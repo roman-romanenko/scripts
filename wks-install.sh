@@ -7,8 +7,12 @@ echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 echo "Install Needed Software"
 sudo apt update
 sudo apt upgrade -y
-sudo apt install xrdp xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg -y
+sudo apt install xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg -y #xrdp
 sudo apt remove xfce4-screensaver xfce4-power-manager -y
+
+wget https://github.com/xa2099/setup/raw/main/xrdp-installer-1.4.3.sh
+chmod +x xrdp-installer-1.4.3.sh
+./xrdp-installer-1.4.3.sh -s -l
 
 echo "Confitue XRDP Session"
 echo xfce4-session > ~/.xsession
