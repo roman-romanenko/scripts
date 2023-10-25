@@ -8,18 +8,21 @@ echo "Install Needed Software"
 sudo apt update
 sudo apt upgrade -y
 sudo apt install xrdp xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg -y
+sudo apt remove xfce4-screensaver xfce4-power-manager -y
 
 echo "Confitue XRDP Session"
 echo xfce4-session > ~/.xsession
-wget -O /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla https://raw.githubusercontent.com/xa2099/setup/main/config/45-allow-colord.pkla
+sudo wget -O /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla https://raw.githubusercontent.com/xa2099/setup/main/config/45-allow-colord.pkla
 
 echo "Deal with Theaming"
-wget https://github.com/xa2099/setup/raw/main/theming/Tela-circle.tar.xz
 mkdir .icons
+wget https://github.com/xa2099/setup/raw/main/theming/Tela-circle.tar.xz
 tar -xf Tela-circle.tar.xz -C ~/.icons
-wget https://github.com/xa2099/setup/raw/main/theming/PRO-dark-XFCE-4.14.tar.xz
 mkdir .themes
+wget https://github.com/xa2099/setup/raw/main/theming/PRO-dark-XFCE-4.14.tar.xz
 tar -xf PRO-dark-XFCE-4.14.tar.xz -C ~/.themes
+wget https://github.com/xa2099/setup/raw/main/theming/Nordic-darker.tar.xz
+tar -xf Nordic-darker.tar.xz -C ~/.themes
 mkdir -p ~/.config/gtk-3.0
 wget -P ~/.config/gtk-3.0/ https://raw.githubusercontent.com/xa2099/setup/main/theming/gtk.css
 wget -O ~/.themes/PRO-dark-XFCE-4.14/gtk-3.0/gtk.css https://raw.githubusercontent.com/xa2099/setup/main/theming/pro-gtk.css
@@ -30,7 +33,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$UBUNTU_CODENAME")" stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 sudo usermod -aG docker $USER
 docker --version
 
@@ -49,10 +52,12 @@ sudo apt install google-chrome-stable
 
 echo "Install Tabby"
 curl -s https://raw.githubusercontent.com/xa2099/setup/main/config/tabby.sh | sudo bash
+sudo apt install tabby-terminal -y
 
 echo "Install VPN"
-wget -O ~/Downloads/anyconnect-linux64-4.10.01075-k9.tar.gz https://vpn.nic.in/resources/software/anyconnect-linux64-4.10.01075-k9.tar.gz
-tar -xf ~/Downloads/anyconnect-linux64-4.10.01075-k9.tar.gz -C ~/Downloads
-bash ~/Downloads/~/Downloads/anyconnect-linux64-4.10.01075-k9/vpn/vpn_install.sh
+wget https://vpn.nic.in/resources/software/anyconnect-linux64-4.10.01075-k9.tar.gz
+tar -xf anyconnect-linux64-4.10.01075-k9.tar.gz -C ./
+cd anyconnect-linux64-4.10.01075/vpn
+sudo ./vpn_install.sh
 
 echo "Done..."
