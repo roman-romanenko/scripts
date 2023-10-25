@@ -7,7 +7,7 @@ echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 echo "Install Needed Software"
 sudo apt update
 sudo apt upgrade -y
-sudo apt install xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg -y #xrdp
+sudo apt install xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg ttf-mscorefonts-installer -y #xrdp
 sudo apt remove xfce4-screensaver xfce4-power-manager -y
 
 wget https://github.com/xa2099/setup/raw/main/xrdp-installer-1.4.3.sh
@@ -30,6 +30,8 @@ tar -xf Nordic-darker.tar.xz -C ~/.themes
 mkdir -p ~/.config/gtk-3.0
 wget -P ~/.config/gtk-3.0/ https://raw.githubusercontent.com/xa2099/setup/main/theming/gtk.css
 wget -O ~/.themes/PRO-dark-XFCE-4.14/gtk-3.0/gtk.css https://raw.githubusercontent.com/xa2099/setup/main/theming/pro-gtk.css
+git clone https://github.com/SpudGunMan/segoe-ui-linux
+sudo bash ./segoe-ui-linux/bash install.sh
 
 echo "Install Docker"
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -53,6 +55,12 @@ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dear
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/chrome-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list'
 sudo apt update
 sudo apt install google-chrome-stable
+
+echo "Install Edge"
+curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-edge.gpg > /dev/null
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-edge.gpg] https://packages.microsoft.com/repos/edge stable main' | sudo tee /etc/apt/sources.list.d/microsoft-edge.list
+sudo apt update
+sudo apt install microsoft-edge-stable
 
 echo "Install Tabby"
 curl -s https://raw.githubusercontent.com/xa2099/setup/main/config/tabby.sh | sudo bash
