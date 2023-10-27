@@ -10,25 +10,28 @@ sudo touch /etc/cloud/cloud-init.disabled
 echo "Install Needed Software =========================================================================================="
 sudo apt update
 sudo apt upgrade -y
-sudo apt install xrdp xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg copyq flameshot -y
+sudo apt install xrdp xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg copyq flameshot Tela-circle-dark -y
 sudo apt remove xfce4-screensaver xfce4-power-manager -y
 
 echo "Configure XRDP ==================================================================================================="
 echo xfce4-session > ~/.xsession
-sudo wget -O /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla https://raw.githubusercontent.com/xa2099/setup/main/config/45-allow-colord.pkla
+sudo wget /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla https://raw.githubusercontent.com/xa2099/setup/main/config/45-allow-colord.pkla
 
 echo "Configure Theaming ==============================================================================================="
 wget https://github.com/xa2099/setup/raw/main/theming/Tela-circle.tar.xz
 sudo tar -xf Tela-circle.tar.xz -C /usr/share/icons
 wget https://github.com/xa2099/setup/raw/main/theming/Nordic-darker.tar.xz
 sudo tar -xf Nordic-darker.tar.xz -C /usr/share/themes
+sudo wget /usr/share/backgrounds/Nord-wallpaper.jpg https://raw.githubusercontent.com/xa2099/setup/main/theming/Nord-wallpaper.jpg
+xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorLVDS-1/workspace0/last-image -s /usr/share/backgrounds/Nord-wallpaper.jpg
 mkdir -p ~/.config/gtk-3.0
 wget -P ~/.config/gtk-3.0/ https://raw.githubusercontent.com/xa2099/setup/main/theming/gtk.css
 wget https://github.com/xa2099/setup/raw/main/theming/fonts.zip
 sudo mkdir /usr/share/fonts/Microsoft
 sudo unzip fonts.zip -d /usr/share/fonts/Microsoft
-xfconf-query -c xsettings -p /Net/ThemeName -s "Nordic-Darker"
-xfconf-query -c xsettings -p /Net/ThemeName -s "Tela circle dark"
+xfconf-query -c xsettings -p /Net/ThemeName -s "Nordic-darker"
+xfconf-query -c xfwm4 -p /general/theme -s  "Nordic-darker"
+xfconf-query -c xsettings -p /Net/IconThemeName -s "Tela-circle-dark"
 
 echo "Install Docker ==================================================================================================="
 sudo install -m 0755 -d /etc/apt/keyrings
