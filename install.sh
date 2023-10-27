@@ -1,21 +1,30 @@
-mkdir installer
-cd installer
-
 echo "Create No Password Sudo =========================================================================================="
 echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
 
-echo "Disable Cloud Init"
+echo "Hit any key to continue..."
+read whatever
+
+echo "Disable Cloud Init ==============================================================================================="
 sudo touch /etc/cloud/cloud-init.disabled
+
+echo "Hit any key to continue..."
+read whatever
 
 echo "Install Needed Software =========================================================================================="
 sudo apt update
 sudo apt upgrade -y
-sudo apt install xrdp xubuntu-core software-properties-common apt-transport-https curl wget engrampa ca-certificates gnupg copyq flameshot ristretto -y
+sudo apt install xubuntu-core xrdp curl wget software-properties-common apt-transport-https ca-certificates gnupg engrampa copyq flameshot ristretto -y
 sudo apt remove xfce4-screensaver xfce4-power-manager -y
+
+echo "Hit any key to continue..."
+read whatever
 
 echo "Configure XRDP ==================================================================================================="
 echo xfce4-session > ~/.xsession
 sudo wget /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla https://raw.githubusercontent.com/xa2099/setup/main/config/45-allow-colord.pkla
+
+echo "Hit any key to continue..."
+read whatever
 
 echo "Configure Theaming ==============================================================================================="
 wget https://github.com/xa2099/setup/raw/main/theming/Tela-circle.tar.xz
@@ -37,6 +46,9 @@ xfconf-query -c xfce4-panel -np /panels/panel-1/size -t string -s 40
 xfconf-query -c xfce4-panel -np /panels/panel-1/icon-size -t string -s 38
 xfconf-query -c xfce4-panel -p /panels -t int -s 1 -a
 
+echo "Hit any key to continue..."
+read whatever
+
 echo "Install Docker ==================================================================================================="
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -47,6 +59,9 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo usermod -aG docker $USER
 docker --version
 
+echo "Hit any key to continue..."
+read whatever
+
 echo "Install VSCode ==================================================================================================="
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -54,11 +69,17 @@ sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packag
 sudo apt-get update 
 sudo apt install code -y
 
+echo "Hit any key to continue..."
+read whatever
+
 echo "Install Chrome ==================================================================================================="
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmour -o /usr/share/keyrings/chrome-keyring.gpg
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/chrome-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list'
 sudo apt update
 sudo apt install google-chrome-stable -y
+
+echo "Hit any key to continue..."
+read whatever
 
 echo "Install Edge ====================================================================================================="
 curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-edge.gpg > /dev/null
@@ -66,19 +87,24 @@ echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-edge.gpg] https://
 sudo apt update
 sudo apt install microsoft-edge-stable
 
+echo "Hit any key to continue..."
+read whatever
+
 echo "Install Tabby ===================================================================================================="
 wget https://packagecloud.io/install/repositories/eugeny/tabby/script.deb.sh
-sudo script.deb.sh
+sudo bash script.deb.sh
 sudo apt update 
 sudo apt install tabby-terminal -y
+
+echo "Hit any key to continue..."
+read whatever
 
 echo "Install VPN ======================================================================================================"
 wget https://vpn.nic.in/resources/software/anyconnect-linux64-4.10.01075-k9.tar.gz
 tar -xf anyconnect-linux64-4.10.01075-k9.tar.gz
 sudo ./anyconnect-linux64-4.10.01075/vpn/vpn_install.sh
 
-echo "Remove installation files ========================================================================================"
-cd ..
-rm -rf installer
+echo "Hit any key to continue..."
+read whatever
 
 echo "Done ============================================================================================================="
