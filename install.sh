@@ -7,9 +7,10 @@ sudo touch /etc/cloud/cloud-init.disabled
 echo "Install Needed Software =========================================================================================="
 sudo apt update
 sudo apt upgrade -y
-sudo apt install xrdp kubuntu-desktop curl wget software-properties-common apt-transport-https ca-certificates gnupg -y
+sudo add-apt-repository ppa:kubuntu-ppa/backports -y
+sudo apt install kde-plasma-desktop xrdp curl wget software-properties-common apt-transport-https ca-certificates gnupg -y
 
-echo "Configure Theaming ==============================================================================================="
+echo "Insatall Standard Fonts ========================================================================================="
 wget https://github.com/xa2099/setup/raw/main/theming/fonts.zip
 sudo mkdir /usr/share/fonts/Microsoft
 sudo unzip fonts.zip -d /usr/share/fonts/Microsoft
@@ -59,5 +60,5 @@ cd anyconnect-linux64-4.10.01075/vpn
 sudo bash vpn_install.sh
 
 echo ""
-echo "Done"
+echo "Finished..."
 echo ""
