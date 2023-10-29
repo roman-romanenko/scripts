@@ -9,10 +9,6 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install xrdp kubuntu-desktop curl wget software-properties-common apt-transport-https ca-certificates gnupg -y
 
-echo "Configure XRDP ==================================================================================================="
-echo xfce4-session > ~/.xsession
-sudo wget /etc/polkit-1/localauthority/ https://raw.githubusercontent.com/xa2099/setup/main/config/45-allow-colord.pkla
-
 echo "Configure Theaming ==============================================================================================="
 wget https://github.com/xa2099/setup/raw/main/theming/fonts.zip
 sudo mkdir /usr/share/fonts/Microsoft
