@@ -22,6 +22,7 @@ sudo tar -xf PRO-dark-XFCE-4.14.tar.xz -C ~/.themes
 mkdir -p ~/.config/gtk-3.0
 wget -P ~/.config/gtk-3.0/ https://raw.githubusercontent.com/xa2099/setup/xfce-setup/theming/gtk.css
 wget -O ~/.themes/PRO-dark-XFCE-4.14/gtk-3.0/gtk.css https://raw.githubusercontent.com/xa2099/setup/xfce-setup/theming/pro-gtk.css
+sudo wget -O /etc/polkit-1/localauthority.conf.d/02-allow-colord.conf https://raw.githubusercontent.com/xa2099/setup/xfce-setup/theming/02-allow-colord.conf 
 
 echo "Insatall Standard Fonts ========================================================================================="
 wget https://github.com/xa2099/setup/raw/xfce-setup/theming/fonts.zip
