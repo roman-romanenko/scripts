@@ -15,10 +15,10 @@ echo xfce4-session > ~/.xsession
 echo "Deal with Theaming =============================================================================================="
 wget https://github.com/xa2099/setup/raw/xfce-setup/theming/Tela-circle.tar.xz
 mkdir .icons
-tar -xf Tela-circle.tar.xz -C ~/.icons
+sudo tar -xf Tela-circle.tar.xz -C ~/.icons
 wget https://github.com/xa2099/setup/raw/xfce-setup/theming/PRO-dark-XFCE-4.14.tar.xz
 mkdir .themes
-tar -xf PRO-dark-XFCE-4.14.tar.xz -C ~/.themes
+sudo tar -xf PRO-dark-XFCE-4.14.tar.xz -C ~/.themes
 mkdir -p ~/.config/gtk-3.0
 wget -P ~/.config/gtk-3.0/ https://raw.githubusercontent.com/xa2099/setup/xfce-setup/theming/gtk.css
 wget -O ~/.themes/PRO-dark-XFCE-4.14/gtk-3.0/gtk.css https://raw.githubusercontent.com/xa2099/setup/xfce-setup/theming/pro-gtk.css
