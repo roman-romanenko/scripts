@@ -1,0 +1,48 @@
+networks:
+
+  net:
+    driver: bridge
+
+services:
+
+  guacd:
+    image: guacamole/guacd
+    volumes:
+    - /docker/guacamole/drive:/drive:rw
+    - /docker/guacamole/record:/record:rw
+    networks:
+      - net
+    restart: always
+
+  postgres:
+    image: postgres:15.2-alpine
+    volumes:
+    - /docker/guacamole/init:/docker-entrypoint-initdb.d:z
+    - /docker/guacamole/data:/var/lib/postgresql/data:Z
+    environment:
+      PGDATA: /var/lib/postgresql/data/guacamole
+      POSTGRES_DB: guacamole_db
+      POSTGRES_PASSWORD: 'kmbigb858nfbf784'
+      POSTGRES_USER: guacamole_user
+    networks:
+      - net
+    restart: always
+
+  guacamole:
+    image: guacamole/guacamole
+    volumes:
+      - ./record:/record:rw
+    environment:
+      GUACD_HOSTNAME: guacd
+      POSTGRES_DATABASE: guacamole_db
+      POSTGRES_HOSTNAME: postgres
+      POSTGRES_PASSWORD: 'kmbigb858nfbf784'
+      POSTGRES_USER: guacamole_user
+    networks:
+      - net
+    ports:
+    - 8080:8080/tcp
+    restart: always
+    depends_on:
+    - guacd
+    - postgres
